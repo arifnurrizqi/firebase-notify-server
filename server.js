@@ -15,7 +15,7 @@ const app = express();
 // Daftar asal yang diizinkan
 const allowedOrigins = [
   'http://localhost:9000',
-  'https://imos-unwiku.web.app', // Tambahkan asal lain yang diizinkan
+  'https://xxx.web.app', // Tambahkan asal lain yang diizinkan
   'http://another-origin.com'
 ];
 
@@ -56,8 +56,31 @@ app.post('/sendNotificationToDevice', (req, res) => {
     });
 });
 
-// Endpoint untuk mengirim notifikasi via topic dan menyimpan ke Firestore
+// Endpoint untuk mengirim notifikasi via device token
 app.post('/sendNotificationToTopic', (req, res) => {
+  const { title, body, topic } = req.body;
+
+  const message = {
+    notification: {
+      title: title,
+      body: body
+    },
+    topic: topic // Device token yang akan menerima notifikasi
+  };
+
+  admin.messaging().send(message)
+    .then((response) => {
+      console.log('Successfully sent message:', response);
+      res.status(200).send('Successfully sent message');
+    })
+    .catch((error) => {
+      console.error('Error sending message:', error);
+      res.status(500).send('Error sending message');
+    });
+});
+
+// Endpoint untuk mengirim notifikasi via topic dan menyimpan ke Firestore
+app.post('/sendNotificationToTopicSaveFirestore', (req, res) => {
   const { title, device_id, topic } = req.body;
   let body = "";
 
