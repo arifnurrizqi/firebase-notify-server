@@ -1,6 +1,6 @@
 # Firebase Notification Server API
 
-This is a Node.js application that provides an API to send notifications via Firebase Cloud Messaging (FCM) to devices and topics. The application is designed to be deployed on Vercel.
+This is a Express.js application that provides an API to send notifications via Firebase Cloud Messaging (FCM) to devices and topics. The application is designed to be deployed on Vercel.
 
 ## Features
 
@@ -49,64 +49,63 @@ To deploy the server to Vercel:
 ### Install Vercel CLI:
 
 ```bash
-Salin kode
 npm install -g vercel
 Login to Vercel:
 ```
 
 ```bash
-Salin kode
 vercel login
-Deploy the project:
 ```
 
+### Deploy the project:
+
 ```bash
-vercel
+vercel --prod
 ```
 
 ### API Endpoints
 Send Notification to Device
 
 #### URL: /sendNotificationToDevice
-Method: POST
-Request Body:
-json
-Salin kode
+- Method: POST
+- Request Body:
+```json
 {
   "title": "Notification Title",
   "body": "Notification Body",
   "token": "device_token"
 }
+```
 Response:
-200 OK on success
+200 OK on success,
 500 Internal Server Error on failure
 Send Notification to Topic
 
 #### URL: /sendNotificationToTopic
-Method: POST
-Request Body:
-json
-Salin kode
+- Method: POST
+- Request Body:
+```json
 {
   "title": "Notification Title",
   "body": "Notification Body",
   "topic": "topic_name"
 }
+```
 Response:
-200 OK on success
+200 OK on success,
 500 Internal Server Error on failure
 Subscribe to Topic
 
 #### URL: /subscribe
-Method: POST
-Request Body:
-json
-Salin kode
+- Method: POST
+- Request Body:
+```json
 {
   "token": "device_token"
 }
+```
 Response:
-200 OK on success
+200 OK on success,
 500 Internal Server Error on failure
 
 ### Example Frontend Integration
@@ -142,8 +141,7 @@ export const requestNotificationPermission = async () => {
   }
 };
 ```
+Make sure to replace placeholders like `your-username`, `your-repo-name`, `your-firebase-database-url`, and `your-vapid-key` with your actual values. This `README.md` provides an overview of the project, instructions for setup, and usage examples for the API endpoints.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-Make sure to replace placeholders like `your-username`, `your-repo-name`, `your-firebase-database-url`, and `your-vapid-key` with your actual values. This `README.md` provides an overview of the project, instructions for setup, and usage examples for the API endpoints.
