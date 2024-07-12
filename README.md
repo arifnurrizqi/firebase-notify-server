@@ -71,6 +71,7 @@ Send Notification to Device
 - Request Body:
 ```json
 {
+  "key": "{api_key_here}",
   "title": "Notification Title",
   "body": "Notification Body",
   "token": "device_token"
@@ -86,6 +87,7 @@ Send Notification to Topic
 - Request Body:
 ```json
 {
+  "key": "{api_key_here}",
   "title": "Notification Title",
   "body": "Notification Body",
   "topic": "topic_name"
@@ -101,6 +103,7 @@ Subscribe to Topic
 - Request Body:
 ```json
 {
+  "key": "{api_key_here}",
   "token": "device_token"
 }
 ```
